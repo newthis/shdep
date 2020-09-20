@@ -5,14 +5,23 @@ import org.iii.ufo.shdep.nodes.StmtList;
 import org.json.JSONObject;
 
 public class IfClause implements Command{
-	private final StmtList cond;
-	private final StmtList then;
-	private final StmtList else_;
+	private StmtList cond;
+	private StmtList then;
+	private StmtList else_;
 
 	public IfClause(JSONObject obj){
-		this.cond = new StmtList(obj.getJSONObject("Cond"));
-		this.then = new StmtList(obj.getJSONObject("Then"));
-		this.else_ = new StmtList(obj.getJSONObject("Else"));
+		if(!obj.get("Cond").toString().equals("null")){
+			this.cond = new StmtList(obj.getJSONArray("Cond"));
+		}
+		if(!obj.get("Then").toString().equals("null")){
+			this.then = new StmtList(obj.getJSONArray("Then"));
+		}
+		if(!obj.get("Else").toString().equals("null")){
+			this.else_ = new StmtList(obj.getJSONArray("Else"));
+		}
+		//this.cond = new StmtList(obj.getJSONObject("Cond"));
+		//this.then = new StmtList(obj.getJSONObject("Then"));
+		//this.else_ = new StmtList(obj.getJSONObject("Else"));
 	}
 
 	public StmtList getCond() {

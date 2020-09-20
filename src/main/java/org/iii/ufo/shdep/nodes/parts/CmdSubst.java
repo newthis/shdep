@@ -9,7 +9,8 @@ public class CmdSubst implements WordPart {
 	private final StmtList stmts;
 
 	public CmdSubst(JSONObject obj) {
-		stmts = new StmtList(obj.getJSONObject("StmtList"));
+		stmts = new StmtList(obj.getJSONArray("Stmts"));
+		//stmts = new StmtList(obj.getJSONObject("StmtList"));
 	}
 
 	public StmtList getStmts() {

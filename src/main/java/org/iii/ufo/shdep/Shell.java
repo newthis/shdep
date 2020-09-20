@@ -2,6 +2,7 @@ package org.iii.ufo.shdep;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
@@ -211,7 +212,7 @@ public class Shell {
 	// @shpath is unnecessary, only for tracking where a function is delared
 	// @ast is the AST presentation for the script
 	// @args is optional, also in the AST form
-	private List<Exec> _run(FsPath shpath, Node ast, List<Word> args) {
+	public List<Exec> _run(FsPath shpath, Node ast, List<Word> args) {
 		// add to table
 		// scripts.put(file, scriptFile);
 		//logger.info("run script '{}': \n{}", shpath, ast);

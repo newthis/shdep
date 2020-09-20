@@ -24,7 +24,8 @@ public class CaseItem implements Node{
 							.stream()
 							.map(Word::new)
 							.collect(Collectors.toList());
-		this.stmtList = new StmtList(obj.getJSONObject("StmtList"));
+		this.stmtList = new StmtList(obj.getJSONArray("Stmts"));
+		//this.stmtList = new StmtList(obj.getJSONObject("StmtList"));
 	}
 	
 	public Op getOp() {

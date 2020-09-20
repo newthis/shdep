@@ -12,8 +12,9 @@ public class WhileClause implements Command{
 
 	public WhileClause(JSONObject obj){
 		this.until = obj.optBoolean("Until");
-		this.cond = new StmtList(obj.getJSONObject("Cond"));
-		this.do_ = new StmtList(obj.getJSONObject("Do"));
+		this.cond = new StmtList(obj.getJSONArray("Cond"));
+		this.do_ = new StmtList(obj.getJSONArray("Do"));
+		//this.do_ = new StmtList(obj.getJSONObject("Do"));
 	}
 	
 	public boolean isUntil() {

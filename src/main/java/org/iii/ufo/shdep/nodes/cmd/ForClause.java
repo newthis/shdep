@@ -11,7 +11,8 @@ public class ForClause implements Command{
 	
 	public ForClause(JSONObject obj) {
 		this.loop = Loop.of(obj.getJSONObject("Loop"));
-		this.do_ =  new StmtList(obj.getJSONObject("Do"));
+		//this.do_ =  new StmtList(obj.getJSONObject("Do"));
+		this.do_ =  new StmtList(obj.getJSONArray("Do"));
 		// TODO Auto-generated constructor stub
 	}
 	

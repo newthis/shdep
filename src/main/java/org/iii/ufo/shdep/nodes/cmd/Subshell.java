@@ -8,7 +8,8 @@ public class Subshell implements Command{
 	private final StmtList stmtList;
 
 	public Subshell(JSONObject obj){
-		stmtList = new StmtList(obj.getJSONObject("StmtList"));
+		//stmtList = new StmtList(obj.getJSONObject("StmtList"));
+		stmtList = new StmtList(obj.getJSONArray("Stmts"));
 	}
 
 	public StmtList getStmtList() {

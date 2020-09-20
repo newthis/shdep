@@ -8,7 +8,7 @@ public class Block implements Command{
 	
 	private final StmtList stmtList;
 	public Block(JSONObject obj){
-		this.stmtList = new StmtList(obj.getJSONObject("StmtList"));
+		this.stmtList = new StmtList(obj.getJSONArray("Stmts"));
 	}
 	
 	public StmtList getStmtList(){

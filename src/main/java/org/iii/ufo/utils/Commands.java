@@ -31,14 +31,16 @@ public class Commands {
 
 	private static JSONObject _shfmt(Path script, boolean tryOnlyAscii) throws IOException, InterruptedException{
 		String cmd = tryOnlyAscii?
-			String.format("perl -pe 's/[^[:ascii:]]//g' '%s' | shfmt -exp.tojson", script.toAbsolutePath().toString()):
+			//String.format("perl -pe 's/[^[:ascii:]]//g' '%s' | shfmt -exp.tojson", script.toAbsolutePath().toString()):
+				String.format("perl -pe 's/[^[:ascii:]]//g' '%s' | shfmt -tojson", script.toAbsolutePath().toString()):
 			String.format("cat '%s' | shfmt -exp.tojson", script.toAbsolutePath().toString());
 		String stdout = Command.cmd(cmd).check().run().getStdout();
 		return new JSONObject(stdout);
 	}
 
 	public static JSONObject shfmt(String str) throws IOException, InterruptedException{
-		String cmd = String.format("echo -n '%s' | shfmt -exp.tojson", str);
+		//String cmd = String.format("echo -n '%s' | shfmt -exp.tojson", str);
+		String cmd = String.format("echo -n '%s' | shfmt -tojson", str);
 		String stdout = Command.cmd(cmd).check().run().getStdout();
 		return new JSONObject(stdout);
 	}

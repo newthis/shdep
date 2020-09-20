@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.json.JSONObject;
+import org.json.JSONArray;
 import static org.iii.utils.CommonUtils.*;
 
 public class StmtList implements Iterable<Stmt>, Node {
@@ -13,11 +14,17 @@ public class StmtList implements Iterable<Stmt>, Node {
 	private final List<Stmt> stmts;
 	//private final Stream<String> comments;
 
-	public StmtList(JSONObject obj){
-		stmts = tolist(obj.optJSONArray("Stmts")).stream()  //maybe empty
+	public StmtList(JSONArray obj){
+		stmts = tolist(obj).stream()  //maybe empty
 				.map(Stmt::new)
 				.collect(Collectors.toList());
 	}
+
+//	public StmtList(JSONObject obj){
+//		stmts = tolist(obj.optJSONArray("Stmts")).stream()  //maybe empty
+//				.map(Stmt::new)
+//				.collect(Collectors.toList());
+//	}
 	
 	@Override
 	public Iterator<Stmt> iterator() {
