@@ -8,11 +8,16 @@ import java.util.stream.Stream;
 import org.json.JSONObject;
 import org.json.JSONArray;
 import static org.iii.utils.CommonUtils.*;
+import java.util.ArrayList;
 
 public class StmtList implements Iterable<Stmt>, Node {
 	
-	private final List<Stmt> stmts;
+	private List<Stmt> stmts;
 	//private final Stream<String> comments;
+
+	public StmtList(){
+		stmts = new ArrayList<>();
+	}
 
 	public StmtList(JSONArray obj){
 		stmts = tolist(obj).stream()  //maybe empty

@@ -33,7 +33,7 @@ public class Commands {
 		String cmd = tryOnlyAscii?
 			//String.format("perl -pe 's/[^[:ascii:]]//g' '%s' | shfmt -exp.tojson", script.toAbsolutePath().toString()):
 				String.format("perl -pe 's/[^[:ascii:]]//g' '%s' | shfmt -tojson", script.toAbsolutePath().toString()):
-			String.format("cat '%s' | shfmt -exp.tojson", script.toAbsolutePath().toString());
+			String.format("cat '%s' | shfmt -tojson", script.toAbsolutePath().toString());
 		String stdout = Command.cmd(cmd).check().run().getStdout();
 		return new JSONObject(stdout);
 	}

@@ -22,7 +22,6 @@ public class Command {
 	public static Command cmd(String cmd){
 		return new Command(cmd);
 	}
-	
 	private final String cmd;
 	//private File outfile;
 	private String stdout;

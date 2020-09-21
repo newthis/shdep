@@ -185,7 +185,12 @@ public class Shell {
 		funcTable.clear();
 
 		Node ast = new ScriptFile(Commands.shfmt(cmdline));
-		return _run(null, ast, Collections.emptyList()).get(0);
+		List<Exec> result = _run(null, ast, Collections.emptyList());
+		if(result.size() > 0){
+			return result.get(0);
+		}else{
+			return null;
+		}
 	}
 
 	public List<Exec> run(Script script) { return run(script,Collections.emptyList()); }

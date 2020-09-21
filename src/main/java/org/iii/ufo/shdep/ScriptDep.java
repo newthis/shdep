@@ -146,7 +146,6 @@ public class ScriptDep {
 		// Becareful: script may not run due to Shell-Dependency-Cycling Detection
 		List<Path> paths = findAllScripts(fsroot);
 		logger.info("find initial {} scripts under {}", paths.size(), fsroot);
-
 		int sn = 0;
 		for(Path path: paths){
 			FsPath fspath = FsPath.fromFull(fsroot, path);
@@ -154,17 +153,17 @@ public class ScriptDep {
 			//run
 			logger.info("run sript({}): '{}'", ++sn, fspath.getInnerPath());
 			Exec exec = shell.run("'" + fspath.getInnerPath() + "'");
+			if(exec != null){
+				//script dep
+				buildScriptDep(exec);
+				//is isolated?
+				if(isEmpty(dependants.get(exec.getCmdpath()))){
+					//logger.info("isolated script: {}", fspath.getInnerPath());
+					isolates.add(fspath);
+				}
+			}
 			//printExec(exec);
 
-			//script dep
-			buildScriptDep(exec);
-
-			//is isolated?
-			if(isEmpty(dependants.get(exec.getCmdpath()))){
-				//logger.info("isolated script: {}", fspath.getInnerPath());
-				isolates.add(fspath);
-			}
-			
 			logger.info("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		}
 

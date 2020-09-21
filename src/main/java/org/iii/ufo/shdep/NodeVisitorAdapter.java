@@ -139,9 +139,15 @@ public class NodeVisitorAdapter implements NodeVisitor{
 
 	@Override
 	public void visit(IfClause cmd) {
-		cmd.getCond().forEach(stmt->stmt.accept(this));
-		cmd.getThen().forEach(stmt->stmt.accept(this));
-		cmd.getElse().forEach(stmt->stmt.accept(this));
+		if(cmd.getCond() != null){
+			cmd.getCond().forEach(stmt->stmt.accept(this));
+		}
+		if(cmd.getThen() != null){
+			cmd.getThen().forEach(stmt->stmt.accept(this));
+		}
+		if(cmd.getElse() != null){
+			cmd.getElse().forEach(stmt->stmt.accept(this));
+		}
 	}
 
 	@Override
